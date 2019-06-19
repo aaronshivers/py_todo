@@ -1,5 +1,5 @@
 # Import Dependencies
-from flask import Flask
+from flask import Flask, render_template
 
 # Initialize Application
 app = Flask(__name__)
@@ -7,7 +7,7 @@ app = Flask(__name__)
 # GET /
 @app.route('/')
 def index():
-  return 'Hello There!'
+  return render_template('index.html')
 
 # Run Server
 if __name__ == '__main__':
