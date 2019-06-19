@@ -16,3 +16,17 @@ source env/bin/activate
 ```
 pip3 install flask flask-sqlalchemy
 ```
+
+### Create Database
+```
+python3
+from app import db
+db.create_all()
+exit()
+```
+
+### Run Server
+http://localhost:5000
+```
+python3 app.py
+```
