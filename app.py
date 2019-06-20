@@ -43,10 +43,27 @@ def index():
     tasks = Todo.query.order_by(Todo.date_created).all()
     return render_template('index.html', tasks=tasks)
 
+# PATCH /update/<id>
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def update_task_by_id(id):
+  task = Todo.query.get_or_404(id)
+
+  if request.method == 'POST':
+    task.content = request.form['content']
+
+    try:
+      db.session.commit()
+      return redirect('/')
+    except:
+      return 'There was an issue updating your task.'
+
+  else:
+    return render_template('update.html', task=task)
+
 # DELETE /delete/<id>
 @app.route('/delete/<int:id>')
 def delete_task_by_id(id):
-  task = Todo.query.get(id)
+  task = Todo.query.get_or_404(id)
 
   try:
     db.session.delete(task)
