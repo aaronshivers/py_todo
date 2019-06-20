@@ -8,6 +8,10 @@
 <div class="container">
   <h1 class="display-1 text-center">Py Task</h1>
 
+  {% if tasks|length < 1 %}
+  <h4 class="text-center">There are no tasks. Create one below.</h4>
+  {% else %}
+
   <table class="table">
     <thead>
       <tr>
@@ -30,6 +34,7 @@
       {% endfor %}
     </tbody>
   </table>
+  {% endif %}
 
   <form action="/" method="POST">
     <div class="form-group">
